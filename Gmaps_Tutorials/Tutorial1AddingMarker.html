@@ -18,23 +18,23 @@
     <script>
       // Initialize and add the map
       function initMap() {
-        // The location of Uluru
+        // The location of OCADU
         const uluru = { lat: -25.344, lng: 131.036 };
-        // The map, centered at Uluru
+        // The map, centered at OCADU
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 10,
-          center: uluru,
+          center: Toronto,
         });
-        // The marker, positioned at Uluru
+        // The marker, positioned at OCADU
         const marker = new google.maps.Marker({
-          position: uluru,
+            position: { lat: 43.65317, lng: -79.39130 },
           map: map,
         });
       }
     </script>
   </head>
   <body>
-    <h3>M Hehehe this is fun </h3>
+    <h3> This is OCAD University the location where I got my degree </h3>
     <!--The div element for the map -->
     <div id="map"></div>
   </body>
