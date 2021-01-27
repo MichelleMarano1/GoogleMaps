@@ -1,9 +1,27 @@
+# Places API
+This JSON return details Wattle & Daub Cafe in Bancroft Ontario, returning name, address components, phone number, business status, website and rating of the restaurant.
 
+## Did not see any bugs
+
+## URL
+https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJa3whOtRl1EwRJHY-x81TCGk&fields=name,address_components,rating,formatted_phone_number,website,business_status&key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E
+
+# JSON Return
 
 {
    "html_attributions" : [],
    "result" : {
       "address_components" : [
+         {
+            "long_name" : "26b",
+            "short_name" : "26b",
+            "types" : [ "street_number" ]
+         },
+         {
+            "long_name" : "Station Street",
+            "short_name" : "Station St",
+            "types" : [ "route" ]
+         },
          {
             "long_name" : "Bancroft",
             "short_name" : "Bancroft",
@@ -25,29 +43,16 @@
             "types" : [ "country", "political" ]
          },
          {
-            "long_name" : "K0L",
-            "short_name" : "K0L",
-            "types" : [ "postal_code_prefix", "postal_code" ]
+            "long_name" : "K0L 1C0",
+            "short_name" : "K0L 1C0",
+            "types" : [ "postal_code" ]
          }
       ],
-      "geometry" : {
-         "location" : {
-            "lat" : 45.0558574,
-            "lng" : -77.8548814
-         },
-         "viewport" : {
-            "northeast" : {
-               "lat" : 45.1362349275595,
-               "lng" : -77.63016001138475
-            },
-            "southwest" : {
-               "lat" : 44.95194793749586,
-               "lng" : -77.90514696013229
-            }
-         }
-      },
-      "name" : "Bancroft",
-      "types" : [ "locality", "political" ]
+      "business_status" : "OPERATIONAL",
+      "formatted_phone_number" : "(613) 318-5455",
+      "name" : "Wattle & Daub Cafe",
+      "rating" : 4.7,
+      "website" : "https://m.facebook.com/WattleandDaubCafe/"
    },
    "status" : "OK"
 }
