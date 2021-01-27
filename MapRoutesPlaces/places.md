@@ -1,7 +1,7 @@
 # Places API
 This JSON return details Wattle & Daub Cafe in Bancroft Ontario, returning name, address components, phone number, business status, website and rating of the restaurant.
 
-## Did not see any bugs
+### Did not see any bugs
 
 ## URL
 https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJa3whOtRl1EwRJHY-x81TCGk&fields=name,address_components,rating,formatted_phone_number,website,business_status&key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E
