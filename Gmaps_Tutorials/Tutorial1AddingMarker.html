@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Michelle's First map with a marker</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 600px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    h3 {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    </style>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of OCADU in Toronto
+        const ocadu = { lat: 43.65317, lng: -79.39130 };
+        // The map, centered at OCADU
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: ocadu,
+        });
+        // The marker, positioned at OCADU
+        const marker = new google.maps.Marker({
+            position: ocadu,
+          map: map,
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h3> This is OCAD University the location where I got my degree </h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+  </body>
+</html>
