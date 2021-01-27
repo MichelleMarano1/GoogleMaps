@@ -8,7 +8,8 @@ https://maps.googleapis.com/maps/api/directions/json?origin=North+Hastings+Publi
 
 # JSON Response
 
-> {
+```json
+{
    "geocoded_waypoints" : [
       {
          "geocoder_status" : "OK",
