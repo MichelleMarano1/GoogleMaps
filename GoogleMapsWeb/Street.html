@@ -2,49 +2,34 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <title>Street View split-map-panes</title>
+    <title> Exploring Street View </title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E&callback=initialize&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E&callback=initPano&libraries=&v=weekly"
       defer
     ></script>
-    <style type="text/css">
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
 
-      #map,
-      #pano {
-        float: left;
-        height: 100%;
-        width: 50%;
-      }
-    </style>
     <script>
-      function initialize() {
-        const fenway = { lat: 42.345573, lng: -71.098326 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: fenway,
-          zoom: 14,
-        });
+      function initPano() {
+        // Note: constructed panorama objects have visible: true
+        // set by default. 
         const panorama = new google.maps.StreetViewPanorama(
-          document.getElementById("pano"),
+          document.getElementById("map"),
           {
-            position: fenway,
-            pov: {
-              heading: 34,
-              pitch: 10,
+            position: { lat: 45.05717, lng: -77.85383 },
+            addressControlOptions: {
+              position: google.maps.ControlPosition.BOTTOM_CENTER,
             },
+            linksControl: false,
+            panControl: false,
+            enableCloseButton: false,
           }
         );
-        map.setStreetView(panorama);
       }
     </script>
   </head>
   <body>
+
     <div class="nav">
         <ul>
           <li><a href="MyFunMap.html">Home</a></li>
@@ -52,17 +37,18 @@
           <li><a href="Street.html"> Exploring</a></li>
         </ul>
       </div>
-      
-    <div class="header">
+
+      <div class="header">
         <h1>Street View </h1>
         <h2>Maps, Routes and Places </h2>
     </div>
+    
+    </div>
     <div id="map"></div>
-    <div id="pano"></div>
-
+    <iframe src="https://www.google.com/maps/embed?pb=!4v1612029508444!6m8!1m7!1sCAoSLEFGMVFpcE5MaTRzN05YTTBzdFVBdXpsS1JFRVEybUIzbEREUW8yeEk2YTJr!2m2!1d45.08302949999999!2d-77.7481155!3f168.86490260735405!4f-31.510230044837122!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!4v1612029601505!6m8!1m7!1sCAoSLEFGMVFpcE1TaUpZOWNUUFpKUnZMT1FpSkItZTRmMGtNaWF2bUdLSVBDQVRw!2m2!1d45.0732193!2d-77.85852810000002!3f353.68343383140495!4f4.116083721047971!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     <div class="footer">
         <p> Michelle Marano 2021    :) </p>
       </div>
-      
   </body>
 </html>
