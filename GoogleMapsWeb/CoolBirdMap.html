@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cool Birds!</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhKkz8ahfRRGzlIcqXo0ioRK6zw_yZf6E&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+    /* In document CSS as per project instructions */
+    /* Setting Map height */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 90%;
+        margin: 0px;
+      }
+      .header {
+        background-color:#eb8d00;
+    text-align: center;
+    padding: 10px;
+    color:white;
+        }
+
+        .nav {
+  margin-top: 0px;
+  padding: 0px;
+  background-color: #3b3b3b;
+  text-align: center;
+  overflow: hidden;
+  font-family: sans-serif;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+
+li {
+  float: left;
+}
+
+li a{
+  display: inline;
+  color: white;
+  text-align: center;
+  padding:20px 20px;
+  text-decoration: none;
+  overflow:hidden;
+}
+  
+li a:hover {
+  background-color: #1c7186;
+}
+
+* {
+   box-sizing: border-box;
+}
+.imageColumn {
+   float: left;
+   width: 25%;
+   padding: 10px;
+}
+        h1 {
+        font-family: 'sans-serif', Verdana, Tahoma;
+        font-size: 54px;
+        font-weight: normal;
+        }
+
+        h2 {
+        font-family: 'sans-serif', Verdana, Tahoma;
+        font-size: 28px;
+        font-weight: bold;
+        }
+        
+        p {
+        font-family: 'sans-serif', Verdana, Tahoma;
+        font-size: 14px;
+        margin-bottom: 40px;
+        }
+
+        ul {
+        font-family: 'sans-serif', Verdana, Tahoma;
+        font-size: 11px;
+        padding-left: 0px;
+        
+        }
+
+        .footer {
+    background-color:#0cc1ee;
+    text-align: center;
+    padding: 1px;
+    color:white;
+    font-size: 12px;
+    font-family: 'Courier New';
+  }
+
+  
+    </style>
+    <script>
+        
+    window.onload = function () {
+        LoadMap();
+    } 
+      // Inital settings for when map is loaded on page //
+    function LoadMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: { lat: 45.170686, lng: -76.848964 },
+            mapTypeId: 'satellite'
+        });
+        // Icon from https://code.google.com/archive/p/google-maps-icons/
+        // How I did this https://medium.com/@jackabox/using-google-api-to-create-multiple-maps-with-an-array-of-markers-95e6ebfd4b0
+        const infoWindow = new google.maps.InfoWindow();
+        const image = "GoogleMapsWeb\images\bird.png";
+
+        // looping for placing multiple markers- taking from locations list further down //
+        //https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example//
+        for (var i = 0; i < locations.length; i++) {
+            const data = locations[i];
+            const myLatlng = new google.maps.LatLng(data.lat, data.lng);
+            const marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: data.title,
+                icon: image,
+                animation: google.maps.Animation.DROP,
+            });
+
+           
+           // tried different events e.g click, rollover ect... https://developers.google.com/maps/documentation/javascript/events
+            // Using an addListener to attatch info window
+            // on inspection...the rollover does not work well with mobile devices.
+            (function (marker, data) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    // Pop up window to allow people to see what bird I saw
+                    infoWindow.setContent(data.title + "<br>" + data.description );
+                    infoWindow.open(map, marker);
+                });
+            
+
+
+            })(marker, data);
+            
+        };
+    }
+
+    //Calling anything from here using data. //
+    
+    const locations = [
+    {  
+        "title": 'Eastern Wood-Peewee',
+        "lat": '45.15715384312701',
+        "lng": '-76.83462814741134',
+        "description": 'The eastern wood pewee is a small tyrant flycatcher from North America. This bird and the western wood pewee were formerly considered to be a single species. The two species are virtually identical in appearance, and can be distinguished most easily by their calls.'
+    },
+    {
+        "title": 'Bald Eagle',
+        "lat": '45.14703309042768',
+        "lng": '-76.84706573880894',
+        "description": 'The bald eagle is a bird of prey found in North America. A sea eagle, it has two known subspecies and forms a species pair with the white-tailed eagle. Its range includes most of Canada and Alaska, all of the contiguous United States, and northern Mexico.'
+    },
+    {   
+        "title": 'Cedar Waxwing',
+        "lat": '45.16869347206906',
+        "lng": '-76.85847794255534',
+        "description": 'The cedar waxwing is a member of the family Bombycillidae or waxwing family of passerine birds. It is a medium-sized, mostly brown, gray, and yellow bird named for its wax-like wing tips.'
+    },
+    { 
+        "title": 'Northern Parula',
+        "lat": '45.17875773093745',
+        "lng": '-76.84557960614768',
+        "description": 'The northern parula is a small New World warbler. It breeds in eastern North America from southern Canada to Florida. '
+    },
+    {  
+        "title": 'Blackburnian Warbler',
+        "lat": '45.17805834189908',
+        "lng": '-76.86266714614636',
+        "description": 'The Blackburnian warbler is a small New World warbler. They breed in eastern North America, from southern Canada, westwards to the southern Canadian Prairies, the Great Lakes region and New England, to North Carolina.'
+    },
+    { 
+        "title": 'Purple Finch ',
+        "lat": '45.179729090402745',
+        "lng": '-76.85180828993992',
+        "description": 'The purple finch is a bird in the finch family, Fringillidae'
+    },
+    {  
+        "title": 'Scarlet Tanager',
+        "lat": '45.174794412730215',
+        "lng": '-76.83356320650488',
+        "description": 'The scarlet tanager is a medium-sized American songbird. Until recently, it was placed in the tanager family, but it and other members of its genus are now classified as belonging to the cardinal family.'
+    },
+    { 
+        "title": ' Baltimore Oriole',
+        "lat": '45.18550471280144',
+        "lng": '-76.84665323856736',
+        "description": 'The Baltimore oriole is a small icterid blackbird common in eastern North America as a migratory breeding bird. It received its name from the resemblance of the males colors to those on the coat of arms of Lord Baltimore.'
+    },
+    {  
+        "title": 'Black-throated Green Warbler',
+        "lat": '45.18243547181096',
+        "lng": '-76.85067707855465',
+        "description": 'The black-throated green warbler is a small songbird of the New World warbler family.'
+    },
+    {  
+        "title": 'Virginia Rail',
+        "lat": '45.18255202828773',
+        "lng": '-76.85056683636395',
+        "description": 'The Virginia rail is a small waterbird, of the family Rallidae. These birds remain fairly common despite continuing loss of habitat, but are secretive by nature and more often heard than seen. They are also considered a game species in some provinces and states, though rarely hunted. '
+    },
+    
+    ];
+    //Cannot get the clustering to work - Was working before info boxes but cant seem to get them working together.
+    //The idea was to have both multiple markers and clustering for this // 
+    new MarkerClusterer(map, marker, {
+    imagePath:
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+
+
+    
+  });
+  
+    </script>
+  </head>
+  <body>
+    <div class="nav">
+        <ul>
+          <li><a href="GoogleMapsWeb\CoolBirdMap.html">Home</a></li>
+          <li><a href="GoogleMapsWeb\CoolRocks.html"> Maps/Places/ROCKS</a></li>
+          <li><a href="GoogleMapsWeb\Street.html"> Exploring</a></li>
+        </ul>
+      </div>
+
+    <div class="header">
+        <h1> Cool birds</h1>
+    </div>
+    <div class= "info">
+        <h2> Birds </h2>
+        <p> Blah Blah
+        </p>
+
+        <div class="alignRow">
+            <div class="imageColumn">
+            <img src="GoogleMapsWeb\images\IMG_0789.jpeg" alt="Mountains" style="width:100%">
+            </div>
+            <div class="imageColumn">
+            <img src="GoogleMapsWeb\images\IMG_0822.jpeg" alt="Snow" style="width:100%">
+            </div>
+            <div class="imageColumn">
+            <img src="GoogleMapsWeb\images\Enlight11.jpg" alt="Snow" style="width:100%">
+            </div>
+            <div class="imageColumn">
+            <img src="GoogleMapsWeb\images\da2f7506-a067-46c9-85f4-0134c9fae611.jpg" alt="Snow" style="width:100%">
+            </div>
+            </div>
+
+        <p> Go out and be a bird nerd!</p>
+
+    </div>
+    
+
+    <div id="map"></div>
+
+    <div class="footer">
+        <p>Michelle Marano 2021    :)</p>
+      </div>
+  </body>
+</html>
